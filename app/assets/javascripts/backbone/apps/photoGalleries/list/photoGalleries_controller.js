@@ -3,7 +3,7 @@ Nate.module('photoGalleries.List', function(List, App, Backbone, Marionette, $, 
   
     listPhotoGalleries:function(){
       var _this = this,
-          photoGalleries = App.request('photoGalleries:entities'); 
+          photoGalleries = App.request('photoGalleries:entities');
       
       this.layout = this.getLayoutView();
       this.layout.on('show', function(){
@@ -14,7 +14,10 @@ Nate.module('photoGalleries.List', function(List, App, Backbone, Marionette, $, 
     },
      
     showPhotoGalleries: function(photoGalleries){
-      var photoGalleriesView = this.getPhotoGalleriesView(photoGalleries);     
+      var photoGalleriesView = this.getPhotoGalleriesView(photoGalleries);
+      
+      console.log(photoGalleriesView);
+           
       this.layout.photoGalleriesThumbnailRegion.show(photoGalleriesView);
     },
 

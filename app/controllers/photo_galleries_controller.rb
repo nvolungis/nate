@@ -31,7 +31,7 @@ class PhotoGalleriesController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.json { @photo_gallery }
+      format.json { @gallery }
     end
   end
 

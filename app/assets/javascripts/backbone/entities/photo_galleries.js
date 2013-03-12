@@ -1,10 +1,29 @@
 Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
   
+  Entities.Photo = Entities.Model.extend({});
+  
+  
+  Entities.Photos = Entities.Collection.extend({
+	  model: Entities.Photo
+  });
+  
   Entities.PhotoGallery = Entities.Model.extend({
+  	
     initialize:function(id){
       this.url =  function(){
         return Routes.photo_gallery_path(id);
-      }
+      };
+      
+      this.on('change', this.getPhotos, this);
+    },
+    
+    getPhotos: function(){
+    	var galleryInfo = this.get('photo_gallery'),
+    			photos = this.get('photos');
+	    
+	    this.set({'id' : galleryInfo.id});
+	    this.set({'name' : galleryInfo.name});
+	    this.photos = new Entities.Photos({collection:photos});
     }
   });
   
@@ -21,26 +40,20 @@ Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
     }
   });
   
-  
-  
-  
-  
   var API = {
     getPhotoGalleriesEntities: function(){
-      photoGalleries = new Entities.PhotoGalleriesCollection;
+      var photoGalleries = new Entities.PhotoGalleriesCollection;
       photoGalleries.fetch();
-      console.log(photoGalleries);
-
+      
       return photoGalleries;
     },
     
     getPhotoGalleryEntities: function(id){
-      console.log('id: ' + id);
-      photoGallery = new Entities.PhotoGallery(id);
+      var photoGallery = new Entities.PhotoGallery(id);
       
       photoGallery.fetch();
-      
-      console.log('entities: ' + photoGallery);
+      window.pg = photoGallery;
+
       return photoGallery;
     }
   };

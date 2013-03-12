@@ -1,3 +1,5 @@
-@photo_gallery
+object false
 
-attributes :name
+node do |obj|
+	@gallery
+end
