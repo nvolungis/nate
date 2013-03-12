@@ -1,0 +1,24 @@
+#site-header{
+  position:absolute;
+  top:0;
+  left:0;
+  background:#fff;
+  
+  li{
+    max-height:40px;
+    overflow:hidden;
+    
+    a{
+      display:block;
+      padding:10px;
+    }
+  }
+
+  .collapsed{
+    li{
+      max-height:0;
+    }
+    
+  }
+}
+

@@ -1,0 +1,22 @@
+<h1>Listing photo_galleries</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @photo_galleries.each do |photo_gallery| %>
+  <tr>
+    <td><%= link_to photo_gallery.name, photo_gallery %></td>
+    <td><%= link_to 'Edit', edit_photo_gallery_path(photo_gallery) %></td>
+    <td><%= link_to 'Destroy', photo_gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Photo gallery', new_photo_gallery_path %>

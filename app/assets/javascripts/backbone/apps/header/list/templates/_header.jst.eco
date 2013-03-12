@@ -1,0 +1,1 @@
+<%- this.linkTo(this.name, this.url) %>
