@@ -2,6 +2,7 @@ Nate.module('photoGalleries.List', function(List, App, Backbone, Marionette, $, 
   
   List.Layout =  Marionette.Layout.extend({
     template:'photoGalleries/list/templates/list_layout',
+    className: 'container',
     regions: {
       photoGalleriesThumbnailRegion:'#photo-galleries-view-region'
     }

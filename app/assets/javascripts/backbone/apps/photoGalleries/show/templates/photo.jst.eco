@@ -1,2 +1,1 @@
-<%= this.name %>
-image!
+<%- this.imgTag(this.path_medium) %>

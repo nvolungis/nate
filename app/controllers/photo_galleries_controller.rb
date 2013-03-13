@@ -18,14 +18,22 @@ class PhotoGalleriesController < ApplicationController
     @photo_gallery = PhotoGallery.find(params[:id])
     
     @photos = Array.new
+    @photos_json = Array.new
     
     @photo_gallery.tags.each do |tag|
-      @photos.push(tag.photos)
+      tag.photos.each do |photo|
+        photo[:path_small] = photo.image.url(:small)
+        photo[:path_medium] = photo.image.url(:medium)
+        photo[:path_large] = photo.image.url(:large)
+        @photos.push(photo);
+      end
     end
+    
     @photos = @photos.flatten
     
     @gallery = {
-      :photo_gallery => @photo_gallery,
+      :id => @photo_gallery.id,
+      :name => @photo_gallery.name,
       :photos => @photos
     }
     

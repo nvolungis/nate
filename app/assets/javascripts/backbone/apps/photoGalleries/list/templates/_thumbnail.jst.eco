@@ -1,1 +1,1 @@
-<li><%= this.name %></li>
+<li><a href='/#/photo_gallery/<%= this.id %>' ><%= this.name %></a></li>

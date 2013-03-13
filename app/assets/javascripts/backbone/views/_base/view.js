@@ -4,6 +4,10 @@ Nate.module('Views', function(Views, App, Backbone, Marionette, $, _){
     
       linkTo: function(name, url, options){
         return "<a href=#" + url + " > "+ name + "</a>";
+      },
+      
+      imgTag: function(src, options){
+        return "<img src='"+ src +"' />";
       }
     }
   });  

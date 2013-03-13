@@ -1,13 +1,11 @@
 <div id='header' class='navbar'>
   <div class='navbar-inner'>
     <div class='container'>
-      <div class='row'>
-        <div class='pull-left'>
-          <span class='brand'>Nate McGarigal</span>
-        </div>
-        
-        <ul class='nav pull-right'></ul>
+      <div class='pull-left'>
+        <span class='brand'>Nate McGarigal</span>
       </div>
+      
+      <ul class='nav pull-right'></ul>
     </div>
   </div>
 </div>

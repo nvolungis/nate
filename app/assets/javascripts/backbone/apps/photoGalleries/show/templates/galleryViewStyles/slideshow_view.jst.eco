@@ -1,0 +1,1 @@
+<%- this.imgTag(this.path_large) %>

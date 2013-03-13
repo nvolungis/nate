@@ -2,7 +2,6 @@ Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
   
   Entities.Photo = Entities.Model.extend({});
   
-  
   Entities.Photos = Entities.Collection.extend({
 	  model: Entities.Photo
   });
@@ -13,26 +12,11 @@ Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
       this.url =  function(){
         return Routes.photo_gallery_path(id);
       };
-      
-      this.on('change', this.getPhotos, this);
-    },
-    
-    getPhotos: function(){
-    	var galleryInfo = this.get('photo_gallery'),
-    			photos = this.get('photos');
-	    
-	    this.set({'id' : galleryInfo.id});
-	    this.set({'name' : galleryInfo.name});
-	    this.photos = new Entities.Photos({collection:photos});
     }
   });
   
-  
-  Entities.PhotoGalleries = Entities.Model.extend({
-    
-  });
-  
-  
+  Entities.PhotoGalleries = Entities.Model.extend({});
+
   Entities.PhotoGalleriesCollection = Entities.Collection.extend({
     model:Entities.PhotoGalleries, 
     url:function(){
@@ -40,14 +24,14 @@ Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
     }
   });
   
+  
   var API = {
-    getPhotoGalleriesEntities: function(){
-      var photoGalleries = new Entities.PhotoGalleriesCollection;
-      photoGalleries.fetch();
+    getPhotoCollectionEntities: function(photos){
+      var photoCollection = new Entities.Photos(photos);
       
-      return photoGalleries;
+      return photoCollection;
     },
-    
+  
     getPhotoGalleryEntities: function(id){
       var photoGallery = new Entities.PhotoGallery(id);
       
@@ -55,15 +39,37 @@ Nate.module('Entities', function(Entities, App, Backbone, Marionette, $, _){
       window.pg = photoGallery;
 
       return photoGallery;
+    },
+  
+    getPhotoGalleriesEntities: function(){
+      var photoGalleries = new Entities.PhotoGalleriesCollection;
+      photoGalleries.fetch();
+      
+      return photoGalleries;
+    },
+    
+    getControls: function(){
+      return new Backbone.Collection([
+        {view:'list', name:'List', className:'list_view'},
+        {view:'thumbnail',name:'Thumbnails', className:'thumbnail_view'},
+        {view:'slideshow', name:'Slideshow', className: 'slideshow_view'}
+      ]);
     }
   };
   
+  App.reqres.addHandler('photoCollection:entities', function(photos){
+    return API.getPhotoCollectionEntities(photos);
+  });
+  
+  App.reqres.addHandler('photoGallery:entities',function(id){
+    return API.getPhotoGalleryEntities(id);
+  });
   
   App.reqres.addHandler('photoGalleries:entities',function(){
     return API.getPhotoGalleriesEntities();
   });
   
-  App.reqres.addHandler('photoGallery:entities',function(id){
-    return API.getPhotoGalleryEntities(id);
+  App.reqres.addHandler('controls:entities',function(){
+    return API.getControls();
   });
 });

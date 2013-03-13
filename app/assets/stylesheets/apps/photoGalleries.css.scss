@@ -1,0 +1,14 @@
+#controls-region           {
+  .btn-group               {float:right}
+  
+  
+}
+
+.gallery                   {
+  h2                       { text-align:center; }
+  
+  &.gallery-list           {
+    .photo                 { text-align:center; margin-bottom:20px;}  
+    
+  }
+}

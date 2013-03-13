@@ -12,7 +12,7 @@ Nate.module('photoGalleries', function(PhotoGalleriesApp, App, Backbone, Marione
     },
     
     showPhotoGallery:function(id){
-      PhotoGalleriesApp.Show.Controller.showPhotoGalleryView(id);
+      PhotoGalleriesApp.Show.Controller.showPhotoGallery(id);
     }
     
   };

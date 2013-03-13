@@ -1,3 +1,0 @@
-TEST <%= this.id %>
-
-<div id='photoView'></div>
